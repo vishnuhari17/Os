@@ -1,0 +1,18 @@
+CREATE TABLE DEPARTMENT ( 
+  2  DNO INT PRIMARY KEY,
+  3  DNAME VARCHAR(10) NOT NULL,
+  4  EMP_COUNT INT ,
+  5  DEPT_HOD VARCHAR(10)
+  6  );
+
+Table created.
+
+SQL> DESC DEPARTMENT
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNO					   NOT NULL NUMBER(38)
+ DNAME					   NOT NULL VARCHAR2(10)
+ EMP_COUNT					    NUMBER(38)
+ DEPT_HOD					    VARCHAR2(10)
+
+

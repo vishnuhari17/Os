@@ -1,0 +1,233 @@
+CREATE TABLE DEPARTMENT ( 
+  2  DNO INT PRIMARY KEY,
+  3  DNAME VARCHAR(10) NOT NULL,
+  4  EMP_COUNT INT ,
+  5  DEPT_HOD VARCHAR(10)
+  6  );
+
+Table created.
+
+SQL> DESC DEPARTMENT
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ DNO					   NOT NULL NUMBER(38)
+ DNAME					   NOT NULL VARCHAR2(10)
+ EMP_COUNT					    NUMBER(38)
+ DEPT_HOD					    VARCHAR2(10)
+
+
+SQL> CREATE TABLE EMPLOYEE (
+ 2	ENO VARCHAR(10) PRIMARY KEY CHECK(ENO LIKE 'E%'),
+ 3	ENAME VARCHAR(10) NOT NULL,
+ 4 	SALARY INT CHECK(SALARY>0),
+ 5 	DNO INT REFERENCES DEPARTMENT(DNO),
+ 6	MGRNO INT,
+ 7	DOJ DATE,
+ 8	DESG VARCHAR(15),
+ 9	ADDRESS VARCHAR(20),
+ 10	CITY VARCHAR(15) CHECK (CITY IN ('COCHIN','MUMBAI','CHENNAI','DELHI')),
+ 11	PINCODE INT 
+);
+
+
+Table created.
+
+
+SQL> DESC EMPLOYEE
+ Name					   Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ENO					   NOT NULL VARCHAR2(10)
+ ENAME					   NOT NULL VARCHAR2(10)
+ SALARY 					    NUMBER(38)
+ DNO						    NUMBER(38)
+ MGRNO						    NUMBER(38)
+ DOJ						    DATE
+ DESG						    VARCHAR2(15)
+ ADDRESS					    VARCHAR2(20)
+ CITY						    VARCHAR2(15)
+ PINCODE					    NUMBER(38)
+
+
+
+SQL> INSERT INTO DEPARTMENT VALUES(1,'CS',20,'JOTHISH');
+
+1 row created.
+
+Commit complete.
+
+
+SQL> INSERT INTO DEPARTMENT VALUES(2,'EEE',15,'HARIS');
+
+1 row created.
+
+Commit complete.
+SQL> INSERT INTO DEPARTMENT VALUES(3,'ECE',20,'JACOB');
+
+1 row created.
+
+Commit complete.
+
+SQL> INSERT INTO DEPARTMENT VALUES(4,'EI',10,'SHIVA');
+
+1 row created.
+
+Commit complete.
+SQL> INSERT INTO DEPARTMENT VALUES(5,'DE',25,'SWARAN');
+
+1 row created.
+
+Commit complete.
+
+
+SQL> SELECT * FROM DEPARTMENT;
+
+       DNO DNAME       EMP_COUNT DEPT_HOD
+---------- ---------- ---------- ----------
+	 1 COS		      20 JOTHISH
+	 2 EEE		      15 HARIS
+	 3 ECE		      20 JACOB
+	 4 EI		      10 SHIVA
+	 5 DE		      25 SWARAN
+	 
+SQL> INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('&ENO','&ENAME',&SALARY,&DNO,&MGRNO,'&DOJ','&DESG','&ADDRESS','&CITY',&PINCODE);
+Enter value for eno: E001
+Enter value for ename: SUBASH
+Enter value for salary: 20000
+Enter value for dno: 2
+Enter value for mgrno: 200
+Enter value for doj: 16-DEC-2004
+Enter value for desg: LEAD   
+Enter value for address: CITY STREET
+Enter value for city: MUMBAI
+Enter value for pincode: 680667
+old   1: INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('&ENO','&ENAME',&SALARY,&DNO,&MGRNO,'&DOJ','&DESG','&ADDRESS','&CITY',&PINCODE)
+new   1: INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('E001','SUBASH',20000,2,200,'16-DEC-2004','LEAD','CITY STREET','MUMBAI',680667)
+
+1 row created.
+
+Commit complete.
+
+SQL> INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('&ENO','&ENAME',&SALARY,&DNO,&MGRNO,'&DOJ','&DESG','&ADDRESS','&CITY',&PINCODE);
+Enter value for eno: E002
+Enter value for ename: SURESH
+Enter value for salary: 25000
+Enter value for dno: 1
+Enter value for mgrno: ''
+Enter value for doj: 15-JAN-2020
+Enter value for desg: STAFF
+Enter value for address: MANGALAPURAM
+Enter value for city: CHENNAI
+Enter value for pincode: 002023
+old   1: INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('&ENO','&ENAME',&SALARY,&DNO,&MGRNO,'&DOJ','&DESG','&ADDRESS','&CITY',&PINCODE)
+new   1: INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('E002','SURESH',25000,1,'','15-JAN-2020','STAFF','MANGALAPURAM','CHENNAI',002023)
+
+1 row created.
+
+Commit complete.
+
+
+SQL> INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('&ENO','&ENAME',&SALARY,&DNO,&MGRNO,'&DOJ','&DESG','&ADDRESS','&CITY',&PINCODE);
+Enter value for eno: E003
+Enter value for ename: RATHEESH
+Enter value for salary: 15000
+Enter value for dno: 4
+Enter value for mgrno: 100
+Enter value for doj: 17-APR-2004
+Enter value for desg: PRO
+Enter value for address: HOME STREET
+Enter value for city: COCHIN
+Enter value for pincode: 38348 
+old   1: INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('&ENO','&ENAME',&SALARY,&DNO,&MGRNO,'&DOJ','&DESG','&ADDRESS','&CITY',&PINCODE)
+new   1: INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('E003','RATHEESH',15000,4,100,'17-APR-2004','PRO','HOME STREET','COCHIN',38348)
+
+1 row created.
+
+Commit complete.
+
+SQL> INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('&ENO','&ENAME',&SALARY,&DNO,&MGRNO,'&DOJ','&DESG','&ADDRESS','&CITY',&PINCODE);
+Enter value for eno: E263
+Enter value for ename: SUMESH
+Enter value for salary: 30405
+Enter value for dno: 5
+Enter value for mgrno: ''
+Enter value for doj: 12-JUN-2015
+Enter value for desg: SWEEPER
+Enter value for address: CLEAN STREET
+Enter value for city: DELHI
+Enter value for pincode: 00011
+old   1: INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('&ENO','&ENAME',&SALARY,&DNO,&MGRNO,'&DOJ','&DESG','&ADDRESS','&CITY',&PINCODE)
+new   1: INSERT INTO EMPLOYEE (ENO,ENAME,SALARY,DNO,MGRNO,DOJ,DESG,ADDRESS,CITY,PINCODE) VALUES ('E263','SUMESH',30405,5,'','12-JUN-2015','SWEEPER','CLEAN STREET','DELHI',00011)
+
+1 row created.
+
+Commit complete.
+
+SQL> SELECT * FROM EMPLOYEE;
+
+ENO	   ENAME	  SALARY	DNO	 MGRNO DOJ	 DESG		 ADDRESS	      CITY		 PINCODE
+---------- ---------- ---------- ---------- ---------- --------- --------------- -------------------- --------------- ----------
+E001	   SUBASH	   20000	  2	   200 16-DEC-04 LEAD		 CITY STREET	      MUMBAI		  680667
+E002	   SURESH	   25000	  1	       15-JAN-20 STAFF		 MANGALAPURAM	      CHENNAI		    2023
+E003	   RATHEESH	   15000	  4	   100 17-APR-04 PRO		 HOME STREET	      COCHIN		   38348
+E263	   SUMESH	   30405	  5	       12-JUN-15 SWEEPER	 CLEAN STREET	      DELHI		      11
+E438	   SASHI	   60000	  3	   200 14-FEB-20 CLERK		 SILICON VALLEY       MUMBAI		   37282
+E007	   SOMAN	   40000	  4	       28-OCT-12 MANAGER	 GARDEN STREET	      DELHI		   72837
+E928	   SUGUNAN	   23000	  1	   182 27-MAR-20 WATCHMAN	 COOL STREET	      COCHIN		   10023
+E302	   SHANMUGHAN	   76840	  1	   200 20-JAN-24 SUPERVISOR	 WINTER TOWN	      CHENNAI		   23299
+E473	   RAJESH	   10000	  6	       15-JUL-22 DEVELOPER	 FIRST POST STREET    DELHI		   27737
+E575	   HARISH	   46372	  6	       15-SEP-19 MANAGER	 JANE STREET	      COCHIN		   20005
+
+10 rows selected.
+
+
+SQL> SELECT ENAME FROM EMPLOYEE WHERE DOJ>'1-JAN-2005' AND DNO = 5;
+
+ENAME
+----------
+SUMESH
+
+
+SQL> SELECT ENAME FROM EMPLOYEE WHERE DNO <> 4;     
+
+ENAME
+----------
+SUBASH
+SURESH
+SUMESH
+SASHI
+SUGUNAN
+SHANMUGHAN
+RAJESH
+HARISH
+
+8 rows selected.
+
+SQL> SELECT ENAME                       
+  2  FROM EMPLOYEE,DEPARTMENT
+  3  WHERE EMPLOYEE.DNO = DEPARTMENT.DNO AND DNAME = 'SALES';
+
+ENAME
+----------
+RAJESH
+HARISH
+
+SQL> SELECT ENAME FROM EMPLOYEE WHERE MGRNO IS NULL;
+
+ENAME
+----------
+SURESH
+SUMESH
+SOMAN
+RAJESH
+HARISH
+
+SQL> SELECT ENAME FROM EMPLOYEE WHERE ENAME LIKE 'J_N%';
+
+ENAME
+----------
+JONNY
+
+
+
+
+
