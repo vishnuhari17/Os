@@ -1,0 +1,19 @@
+create table author(author_id varchar(10) primary key,name varchar(10),email varchar(10),phno varchar(10),status varchar(10));
+
+create table publisher(pub_id varchar(10) primary key,name varchar(10),address varchar(10));
+
+create table language(lang_id varchar(10) primary key,name varchar(10));
+
+create table book(book_id varchar(10) primary key,title varchar(10),lang_id varchar(10),mrp varchar(5),pub_id varchar(10),pub_date date,volume varchar(5),status varchar(10),foreign key(lang_id) references language(lang_id),  foreign key(pub_id) references publisher(pub_id));
+
+create table book_author(book_id varchar(10),author_id varchar(10),primary key(book_id,author_id),foreign key(book_id) references book(book_id),foreign key(author_id) references author(author_id));
+
+create table member(member_id varchar(10) primary key,name varchar(10),branch_code varchar(10),roll_no varchar(5),ph_no varchar(10),email_id varchar(10),doj date,status varchar(10));
+
+create table book_issue(issue_id varchar(10) primary key,date_of_issue date,book_id varchar(10),member_id varchar(10),expected_date_of_return date,status varchar(10),foreign key(book_id) references book(book_id),foreign key(member_id) references member(member_id));
+
+create table book_return(issue_id varchar(10) primary key,actual_date_of_return date,late_days varchar(5),late_fee int,foreign key(issue_id) references book_issue(issue_id));
+
+create table late_fee_rule(FromDays varchar(5),ToDays varchar(5),amount int,primary key(FromDays,ToDays));
+
+
